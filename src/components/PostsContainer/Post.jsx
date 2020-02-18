@@ -11,11 +11,17 @@ const Post = props => {
   // set up state for the likes
   const [likes, setLikes] = useState(props.post.likes);
   const [hasLiked, setHasLiked] = useState(false);
+  const [likeColor, setLikeColor] = useState('');
 
-  const addLike = () => {
+  const clickLike = () => {
     if (!hasLiked) {
       setLikes(likes + 1);
       setHasLiked(true);
+      setLikeColor('rgb(237, 73, 86)');
+    } else {
+      setLikes(likes - 1);
+      setHasLiked(false);
+      setLikeColor('');
     }
   };
 
@@ -34,7 +40,7 @@ const Post = props => {
           src={props.post.imageUrl}
         />
       </div>
-      <LikeSection likes={likes} addLike={addLike} />
+      <LikeSection likes={likes} clickLike={clickLike} likeColor={likeColor} />
       <CommentSection
         postId={props.post.imageUrl}
         comments={props.post.comments}

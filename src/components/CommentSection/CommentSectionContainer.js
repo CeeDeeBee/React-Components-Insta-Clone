@@ -6,7 +6,22 @@ import "./Comment.css";
 
 const CommentSection = props => {
   // Add state for the comments
-  const [comments] = useState(props.comments);
+  const [comments, setComments] = useState(props.comments);
+  const [userComment, setUserComment] = useState('');
+
+  const submitComment = (e) => {
+    e.preventDefault();
+    const newComment = {
+      username: 'me',
+      text: userComment
+    }
+    setComments([...comments, newComment]);
+    setUserComment('');
+  }
+
+  const changeComment = (e) => {
+    setUserComment(e.target.value);
+  }
 
   return (
     <div className="comments-container">
@@ -14,7 +29,7 @@ const CommentSection = props => {
       {comments.map((comment, index) => (
         <Comment key={props.postId + index} comment={comment} />
       ))}
-      <CommentInput />
+      <CommentInput userComment={userComment} changeComment={changeComment} submitComment={submitComment} />
     </div>
   );
 };
