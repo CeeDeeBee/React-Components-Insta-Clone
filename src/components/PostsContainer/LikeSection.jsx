@@ -5,7 +5,7 @@ import React from "react";
 
 const LikeSection = props => {
   return (
-    <div>
+    <div className="like-section-container">
       <div
         className="like-section"
         key="likes-icons-container"

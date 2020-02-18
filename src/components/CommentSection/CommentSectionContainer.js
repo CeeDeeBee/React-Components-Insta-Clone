@@ -9,10 +9,10 @@ const CommentSection = props => {
   const [comments] = useState(props.comments);
 
   return (
-    <div>
+    <div className="comments-container">
       {/* map through the comments data and return the Comment component */}
-      {comments.map((comment) => (
-        <Comment comment={comment} />
+      {comments.map((comment, index) => (
+        <Comment key={props.postId + index} comment={comment} />
       ))}
       <CommentInput />
     </div>
